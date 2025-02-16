@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title>Mon profil</title>
     <!-- Lien vers ton fichier CSS -->
-    <link rel="stylesheet" href="profil.css" />
+    <link rel="stylesheet" href="../css/styleprofil.css" />
     <!-- Lien vers FontAwesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
@@ -13,32 +13,31 @@
 
     <!-- HEADER -->
     <section class="header">
+         
         <a href="index.html" class="logo">XPlore</a>
-        <nav class="navbar">
-            <a href="#">Destination</a>
-            <a href="#">Types de voyage</a>
-            <a href="#">Inspiration</a>
-            <a href="#">À propos</a>
-        </nav>
-        <div class="register-btn" id="register-btn"><i class="fas fa-user"></i></div>
-        <div class="menu-reduit" id="menu-reduit"><i class="fas fa-bars"></i></div>
-    </section>
 
-    <!-- BANNIÈRE -->
-    <section class="banner">
-        <div class="banner-content">
-            <h1>Bienvenue dans votre Espace Client</h1>
-            <p>Accédez à toutes vos informations de voyage</p>
-        </div>
-    </section>
-
-    <!-- MENU RÉDUIT (responsive) -->
-    <div class="menu-redu">
+    <nav class="navbar">
+        <a href="admin.html">Admin</a>
+        <a href="index.html">Accueil</a>
         <a href="#">Destination</a>
-        <a href="#">Types de voyage</a>
-        <a href="#">Inspiration</a>
-        <a href="#">À propos</a>
-    </div>
+        <a href="profil.html">Mon Profil</a>
+        <a href="inscription.html">Se connecter</a>
+    </nav>
+    <div class="menu-reduit" id="menu-reduit"><i class="fas fa-bars"></i></div>
+
+    
+    
+
+</section>
+
+<div class="menu-redu">
+    <a href="admin.html">Admin</a>
+    <a href="index.html">Accueil</a>
+    <a href="#">Destination</a>
+    <a href="/html/profil.html">Mon Profil</a>
+    <a href="inscription.html">Se connecter</a>
+</nav>
+</div>
 
     <!-- SCRIPT du menu burger -->
     <script>

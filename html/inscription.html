@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Compte client : Gerez vos informations personnelles</title>
-    <link rel="stylesheet" href="inscription.css" />
+    <link rel="stylesheet" href="../css/styleinscription.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
 </head>
 
@@ -13,27 +13,31 @@
 
     <!-- HEADER -->
     <section class="header">
+         
         <a href="index.html" class="logo">XPlore</a>
-        <nav class="navbar">
-            <a href="#">Destination</a>
-            <a href="#">Types de voyage</a>
-            <a href="#">Inspiration</a>
-            <a href="#">À propos</a>
-        </nav>
-        <div class="register-btn" id="register-btn">
-            <i class="fas fa-user"></i>
-        </div>
-        <div class="menu-reduit" id="menu-reduit">
-            <i class="fas fa-bars"></i>
-        </div>
-    </section>
-    
-    <div class="menu-redu">
+
+    <nav class="navbar">
+        <a href="admin.html">Admin</a>
+        <a href="index.html">Accueil</a>
         <a href="#">Destination</a>
-        <a href="#">Types de voyage</a>
-        <a href="#">Inspiration</a>
-        <a href="#">À propos</a>
-    </div>
+        <a href="profil.html">Mon Profil</a>
+        <a href="inscription.html">Se connecter</a>
+    </nav>
+    <div class="menu-reduit" id="menu-reduit"><i class="fas fa-bars"></i></div>
+
+    
+    
+
+</section>
+
+<div class="menu-redu">
+    <a href="admin.html">Admin</a>
+    <a href="index.html">Accueil</a>
+    <a href="#">Destination</a>
+    <a href="/html/profil.html">Mon Profil</a>
+    <a href="inscription.html">Se connecter</a>
+</nav>
+</div>
     
     <script>
         const MenuButton = document.querySelector('.menu-reduit');
@@ -106,21 +110,21 @@
             <!-- Carte 1 -->
             <div class="idea-card">
                 <!-- Remplace "famille.jpeg" par ton image -->
-                <img src="famille.jpeg" alt="Famille" />
+                <img src="../image/famille.jpeg" alt="Famille" />
                 <h3>Famille</h3>
                 <button>Découvrir maintenant</button>
             </div>
             <!-- Carte 2 -->
             <div class="idea-card">
                 <!-- Remplace "couple.jpeg" par ton image -->
-                <img src="couple.jpeg" alt="Adult Only" />
+                <img src="../image/couple.jpeg" alt="Adult Only" />
                 <h3>Adult Only</h3>
                 <button>Découvrir maintenant</button>
             </div>
             <!-- Carte 3 -->
             <div class="idea-card">
                 <!-- Remplace "safari.jpeg" par ton image -->
-                <img src="safari.jpeg" alt="Safari" />
+                <img src="../image/safari.jpeg" alt="Safari" />
                 <h3>Safari</h3>
                 <button>Découvrir maintenant</button>
             </div>
