@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>Mon profil</title>
+    <!-- Lien vers ton fichier CSS -->
+    <link rel="stylesheet" href="profil.css" />
+    <!-- Lien vers FontAwesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <section class="header">
+        <a href="index.html" class="logo">XPlore</a>
+        <nav class="navbar">
+            <a href="#">Destination</a>
+            <a href="#">Types de voyage</a>
+            <a href="#">Inspiration</a>
+            <a href="#">À propos</a>
+        </nav>
+        <div class="register-btn" id="register-btn"><i class="fas fa-user"></i></div>
+        <div class="menu-reduit" id="menu-reduit"><i class="fas fa-bars"></i></div>
+    </section>
+
+    <!-- BANNIÈRE -->
+    <section class="banner">
+        <div class="banner-content">
+            <h1>Bienvenue dans votre Espace Client</h1>
+            <p>Accédez à toutes vos informations de voyage</p>
+        </div>
+    </section>
+
+    <!-- MENU RÉDUIT (responsive) -->
+    <div class="menu-redu">
+        <a href="#">Destination</a>
+        <a href="#">Types de voyage</a>
+        <a href="#">Inspiration</a>
+        <a href="#">À propos</a>
+    </div>
+
+    <!-- SCRIPT du menu burger -->
+    <script>
+        const MenuButton = document.querySelector('.menu-reduit')
+        const MenuButtonICON = document.querySelector('.menu-reduit i')
+        const Menu = document.querySelector('.menu-redu')
+
+        MenuButton.onclick = function(){
+            Menu.classList.toggle('open')
+            const isOpen = Menu.classList.contains('open')
+            MenuButtonICON.classList = isOpen ? 'fas fa-xmark':'fas fa-bars'
+        }
+    </script>
+
+    <!-- CONTENU DE LA PAGE PROFIL -->
+    <div class="profile-container">
+        <!-- Barre latérale gauche -->
+        <aside class="profile-sidebar">
+            <h2>Mon compte</h2>
+            <ul>
+                <li><a href="#" class="active">Mes informations personnelles</a></li>
+                <li><a href="#">Mes commandes</a></li>
+                <li><a href="#">Mes abonnements & envies</a></li>
+                <li><a href="#">Mes avis</a></li>
+                <li><a href="#">Se déconnecter</a></li>
+            </ul>
+        </aside>
+
+        <!-- Contenu principal -->
+        <main class="profile-main">
+            <h1>Bonjour, <span class="username">RINAL Brian</span></h1>
+
+            <!-- Bloc Mes coordonnées -->
+            <section class="profile-block">
+                <h2>Mes coordonnées</h2>
+                <div class="info-item">
+                    <strong>Civilité :</strong>
+                    <span>Monsieur</span>
+                </div>
+                <div class="info-item">
+                    <strong>Nom :</strong>
+                    <span>RINAL</span>
+                </div>
+                <div class="info-item">
+                    <strong>Prénom :</strong>
+                    <span>Brian</span>
+                </div>
+                <div class="info-item">
+                    <strong>Email / Identifiant :</strong>
+                    <span>brian.rinal@example.com</span>
+                </div>
+                <div class="info-item">
+                    <strong>Adresse :</strong>
+                    <span>123 Rue de la Paix, 75000 Paris</span>
+                </div>
+                <div class="info-item">
+                    <button class="edit-btn">Je modifie mes coordonnées</button>
+                </div>
+            </section>
+
+            <!-- Bloc Qui voyage avec moi -->
+            <section class="profile-block">
+                <h2>Qui voyage avec moi ?</h2>
+                <p>Aucun voyageur enregistré.</p>
+                <button class="add-traveler-btn">J’ajoute un voyageur</button>
+            </section>
+        </main>
+    </div>
+
+    <!-- SECTION : FORMULAIRE NEWSLETTER -->
+    <section class="newsletter-section">
+        <div class="newsletter-container">
+            <h2>Inscrivez-vous et recevez nos nouveautés<br>et offres spéciales !</h2>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Entrez votre adresse email">
+                <button>Envoyer</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION : 3 COLONNES DE TEXTE -->
+    <section class="promos-section">
+        <div class="promos-container">
+            <div class="promo-box">
+                <h3>Préparez un voyage exceptionnel avec Promovacances</h3>
+                <p>Plongez au cœur de la savane africaine et observez la faune sauvage dans son habitat naturel. Entre lions majestueux, éléphants puissants et paysages à couper le souffle, votre safari au Kenya sera une expérience inoubliable.</p>
+            </div>
+            <div class="promo-box">
+                <h3>Vos voyages 2025 à l'étranger</h3>
+                <p>Partez à la conquête des sentiers de l’Himalaya et découvrez la beauté grandiose des plus hauts sommets du monde. Rythmez vos journées de marche par des rencontres chaleureuses avec les villageois et leurs traditions ancestrales.</p>
+            </div>
+            <div class="promo-box">
+                <h3>Promonacances, des voyages abordables toute l'année</h3>
+                <p>Offrez-vous une escapade enneigée dans les Alpes suisses. Glissez sur des pistes impeccables, admirez des panoramas alpins spectaculaires et détendez-vous le soir venu autour d’un délicieux chocolat chaud au coin du feu.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h2>XPlore</h2>
+                <p>Vivez une aventure</p>
+            </div>
+            <div class="footer-section">
+                <h3>À propos</h3>
+                <ul>
+                    <li><a href="#">Qui sommes-nous ?</a></li>
+                    <li><a href="#">Nos agences</a></li>
+                    <li><a href="#">Recrutement</a></li>
+                    <li><a href="#">Affiliation</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Conditions</h3>
+                <ul>
+                    <li><a href="#">CGV</a></li>
+                    <li><a href="#">Politique de confidentialité</a></li>
+                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="#">Paiement sécurisé</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Tel: 01 34 25 10 10</p>
+                <p>Email: contact@xplore.com</p>
+                <p>Av. du Parc, 95000 Cergy</p>
+            </div>
+            <div class="footer-section">
+                <h3>Suivez-nous</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 XPlore - Tous droits réservés</p>
+        </div>
+    </footer>
+    
+</body>
+</html>
