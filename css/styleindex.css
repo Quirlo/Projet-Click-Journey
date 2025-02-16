@@ -109,6 +109,8 @@ section{
 
 }
 
+
+
 .searchbox{
   background-color: white;
   padding: 1rem;
@@ -204,6 +206,7 @@ h2 {
 
 .destination:hover {
   transform: scale(1.05);
+  color: #f1ee03;
 }
 
 .about {
