@@ -277,25 +277,9 @@ a {
     transform: translateX(20%);
 }
 
-/* Paragraphe standard */
-p {
-    font-size: 14px;
-    font-weight: 100;
-    line-height: 20px;
-    letter-spacing: 0.5px;
-    margin: 20px 0 30px;
-}
 
-/* Autres styles généraux (Poppins, etc.)   */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    border: none;
-    text-decoration: none;
-    outline: none;
-    font-family: 'Poppins', sans-serif;
-}
+
+
 :root {
     --main-color: black;
     --box-shadow: 0.5rem;
@@ -310,37 +294,7 @@ section {
     padding: 5rem 10%;
 }
 
-/* HEADER                                   */
-.header {
-    background-color: white;
-    position: sticky;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000 !important;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100px;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-}
-.header .logo {
-    font-size: 2.5rem;
-    font-weight: 600;
-    color: hsl(0, 0%, 0%);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-.header .navbar {
-    z-index: 1000;
-}
-.header .navbar a {
-    font-size: 15px;
-    margin-left: 2rem;
-    color: black;
-}
+
 #register-btn {
     font-size: 1.25rem;
     cursor: pointer;
@@ -391,6 +345,7 @@ section {
     .menu-redu {
         left: 2rem;
         width: unset;
+
     }
 }
 
