@@ -133,6 +133,7 @@ section{
   background: url('montagne2.jpeg') no-repeat center center;
   background-size: cover;
   position: relative;
+  
 }
 
 .banner-content {
@@ -188,9 +189,6 @@ section{
   font-weight: bold;
 }
 
-.profile-sidebar ul li a.active {
-  text-decoration: underline;
-}
 
 /* Contenu principal du profil */
 .profile-main {
