@@ -285,6 +285,7 @@ footer {
 }
 
 .footer-container {
+    text-align: center;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
