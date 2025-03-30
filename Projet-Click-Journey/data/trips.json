@@ -1,0 +1,67 @@
+[
+  
+  {
+    "id": 1,
+    "slug": "alpes",
+    "image": "image/alpesdest.jpg",
+    "title": "Les Alpes",
+    "description": "Randonnée douce au cœur des Alpes pour tous les niveaux.",
+    "long_description": "Découvrez les Alpes à travers un itinéraire accessible, entre montagnes majestueuses, vallées verdoyantes et hébergements authentiques. Ce voyage est idéal pour les familles ou les randonneurs souhaitant profiter de paysages incroyables sans difficulté technique.",
+    "start_date": "2025-07-10",
+    "end_date": "2025-07-16",
+    "duration": 6,
+    "price": 950,
+    "difficulty": "facile",
+    "season": "été",
+    "steps": [
+      {
+        "title": "Arrivée à Chamonix",
+        "arrival_date": "2025-07-10",
+        "departure_date": "2025-07-11",
+        "location": {
+          "city": "Chamonix",
+          "gps": "45.9237, 6.8694"
+        },
+        "options": {
+          "hebergement": ["Refuge de montagne", "Hôtel 3★", "Camping"],
+          "restauration": ["Petit déjeuner", "Demi-pension", "Pique-nique"],
+          "activites": ["Visite de Chamonix", "Téléphérique de l'Aiguille du Midi", "Musée Alpin"],
+          "transport": ["Train Mont-Blanc Express", "Marche"]
+        }
+      },
+      {
+        "title": "Lac Blanc et réserve naturelle",
+        "arrival_date": "2025-07-11",
+        "departure_date": "2025-07-13",
+        "location": {
+          "city": "Lac Blanc",
+          "gps": "45.9762, 6.8964"
+        },
+        "options": {
+          "hebergement": ["Refuge", "Bivouac"],
+          "restauration": ["Demi-pension", "Pique-nique"],
+          "activites": ["Randonnée", "Observation des marmottes", "Photo panoramique"],
+          "transport": ["Marche", "Télécabine"]
+        }
+      },
+      {
+        "title": "Retour via la Mer de Glace",
+        "arrival_date": "2025-07-13",
+        "departure_date": "2025-07-16",
+        "location": {
+          "city": "Mer de Glace",
+          "gps": "45.9225, 6.9311"
+        },
+        "options": {
+          "hebergement": ["Hôtel 3★", "Refuge"],
+          "restauration": ["Demi-pension", "Petit déjeuner"],
+          "activites": ["Randonnée glaciaire", "Train du Montenvers"],
+          "transport": ["Train", "Marche"]
+        }
+      }
+    ]
+  }
+  
+  
+  
+]
