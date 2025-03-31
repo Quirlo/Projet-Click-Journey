@@ -1,45 +1,93 @@
-🧭 Projet XPLORE - Agence de Voyages d'Aventure
+#  Projet Click-JourneY-XPLORE
 
-📌 Description Générale
+**Click-JourneY** est un site web dynamique de réservation de voyages d’aventure, développé en PHP et utilisant une base de données au format JSON. Il propose des séjours extrêmes à travers le monde (trek, safari, expéditions) et permet aux utilisateurs de consulter, personnaliser et réserver leurs voyages.
 
-XPLORE est une agence de voyages spécialisée dans les séjours d'aventure extrême (trek, safari, expéditions polaires, plongée, etc.). Ce projet s'inscrit dans le cadre de la Phase 1 du projet Click-JourneY.
+##  Arborescence du projet
 
-🌟 Concept Principal
+```
+Projet-Click-Journey/
+│
+├── css/                    # Feuilles de style CSS
+├── data/                   # Fichiers JSON (trips, users)
+├── image/                  # Images utilisées dans le site
+├── testphp/                # Fichiers de tests PHP
+│
+├── admin.php               # Interface d'administration
+├── connexion.php           # Page de connexion
+├── destination.php         # Liste des voyages (publique)
+├── inscription.php         # Page d'inscription
+├── index.php               # Page d'accueil
+├── payment.php             # Interface de paiement
+├── profil.php              # Accès au profil utilisateur
+├── recapitulatif.php       # Page de récapitulatif d'un voyage personnalisé
+├── recapprofil.php         # Historique des voyages (profil ou admin)
+├── validation_paiement.php # Vérification après retour de paiement
+├── voyage.php              # Détails d’un voyage cliquable
+│
+├── README.md               # (Ce fichier)
+├── README_XPlore.txt       # Informations spécifiques à la plateforme XPlore
+└── Rapport.pdf             # Rapport de projet
+```
 
-L'objectif est de proposer une expérience immersive avec des circuits d'aventure, permettant aux visiteurs de découvrir des voyages thématiques.
+##  Fonctionnalités principales
 
-🛠️ Contenu Principal
+- 🔎 **Consultation libre des voyages** (page `destination.php`)
+- 📄 **Fiches détaillées** avec personnalisation (hébergement, restauration, activités)
+- 💬 **Authentification utilisateur** (inscription, connexion)
+- 🧾 **Récapitulatif et réservation personnalisée**
+- 💳 **Simulation de paiement via interface CY Bank**
+- 🛠️ **Interface administrateur** (gestion des utilisateurs, bannissement, consultation des réservations)
+- 🔐 **Sécurisation basique des accès selon rôles**
 
-Pages clés : Accueil, Recherche de voyages, Inscription, Connexion, Profil utilisateur, et Administration.
+## 📦 Format des données JSON
 
-Charte graphique : Inspirée par l'esprit d'aventure et de découverte.
+### `trips.json`
+Contient les voyages avec leurs caractéristiques :
 
-Navigation fluide pour une expérience utilisateur simple.
+```json
+{
+  "id": 1,
+  "title": "Safari dans le Masai Mara",
+  "destination": "Kenya",
+  "price": 1490,
+  "duration": "7 jours",
+  "start_date": "2025-05-15",
+  "steps": [
+    "SITUATION", "HÉBERGEMENT", "RESTAURATION", ...
+  ]
+}
+```
 
-📂 Organisation et Suivi
+### `users.json`
+Gère les comptes et rôles des utilisateurs :
 
-Dépôt GitHub : [Lien à insérer]
+```json
+{
+  "email": "exemple@mail.com",
+  "password": "hash",
+  "role": "normal",  // ou "admin", "banni"
+  "reservations": [...]
+}
+```
 
-Commits clés : [phase#1] DEBUT (initialisation) et [phase#1] FIN (livraison).
+## 👤 Comptes de test
 
-📊 Livrables
+- 🔑 **Administrateur**  
+  Email : `test@admin.com`  
+  Mot de passe : `oli`
 
-✅ Pages principales en HTML et CSS
+- 👥 **Client classique**  
+  Email : `slave1@test.com`  
+  Mot de passe : `1234`
 
-✅ Document de conception (charte graphique et wireframes)
+## 🚀 Lancer le projet
 
-✅ Planning de travail
+1. Placer le dossier dans `htdocs` (via XAMPP ou autre serveur local).
+2. Démarrer **Apache** dans XAMPP.
+3. Accéder à [http://localhost/Projet-Click-Journey](http://localhost/Projet-Click-Journey)
 
-🧑‍🤝‍🧑 Équipe Projet
+## ✏️ Auteurs
 
-Membres : Taimim Jelouali, Mohamed Ouhab, Edonis Shaljani
-
-Contact : romuald.grignon@cyu.fr | caryl.le-breton1@cyu.fr
-
-🚀 Étapes Suivantes
-
-Phase 2 : Développement des fonctionnalités dynamiques et du système utilisateur.
-
-📌 Version : 1.1
-📅 Année scolaire : 2024-2025
-💼 Projet Click-JourneY | préING2
+- Mohamed Ouhab
+- Edonis Shaljani
+- Taimim Jelouali
