@@ -165,5 +165,35 @@
         "registration_date": "2025-03-31",
         "last_login_date": "2025-03-31",
         "trips_history": []
+    },
+    {
+        "email": "craquance@street.fr",
+        "password": "$2y$10$1OoMb8tPvies.rHAvSpCe.zJ8WrPcJI8bU8SNGOFTFztaXxUOBZRS",
+        "role": "normal",
+        "personal_info": {
+            "name": "Alaa Kellai",
+            "nickname": "",
+            "birthdate": "2005-01-11",
+            "address": ""
+        },
+        "registration_date": "2025-03-31",
+        "last_login_date": "2025-03-31",
+        "trips_history": [
+            {
+                "trip_id": "15",
+                "title": "Voyage personnalis\u00e9",
+                "date": "2025-03-31",
+                "custom_options": [
+                    {
+                        "step": "Trek dans les montagnes de l\u2019Atlas",
+                        "hebergement": "Petit h\u00f4tel de charme",
+                        "restauration": "Tajine traditionnel",
+                        "activite": "Randonn\u00e9e \u00e0 travers les vall\u00e9es",
+                        "transport": "Marche",
+                        "participants": "1"
+                    }
+                ]
+            }
+        ]
     }
 ]
