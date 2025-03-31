@@ -39,7 +39,7 @@ foreach ($trips as $trip) {
             <form method="post" action="validation_paiement.php">
                 <div class="form-group">
                     <label>Numéro de carte :</label>
-                    <input type="text" name="card_number" placeholder="1234 5678 9012 3456" required>
+                    <input type="text" name="card_number" id="card_number" maxlength="19" placeholder="1234 5678 9012 3456" required>
                 </div>
                 <div class="form-group">
                     <label>Nom du titulaire :</label>
@@ -62,3 +62,14 @@ foreach ($trips as $trip) {
 
 </body>
 </html>
+
+<script>
+    const cardInput = document.getElementById('card_number');
+
+    cardInput.addEventListener('input', function(e) {
+        let value = this.value.replace(/\D/g, ''); // Supprimer tout sauf les chiffres
+        value = value.substring(0, 16); // Limite à 16 chiffres
+        const spaced = value.match(/.{1,4}/g); // Regroupe par 4
+        this.value = spaced ? spaced.join(' ') : '';
+    });
+</script>
