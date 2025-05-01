@@ -17,7 +17,8 @@ if ($trips === null) {
     <title>Xplore - Destinations Trekking</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="css/styledestination.css">
-</head>
+    <link id="theme-style" rel="stylesheet" href="css/styledestination.css">
+    <script src="js/theme.js" defer></script>
 <body>
 
 <section class="header">

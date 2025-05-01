@@ -13,16 +13,25 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="css/styleindex.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link id="theme-style" rel="stylesheet" href="css/styleindex.css">
+    <script src="js/theme.js" defer></script>
 
 </head>
 
 
 
 <body>
-
+    
     <section class="header">
-         
+          
             <a href="index.php" class="logo">XPlore</a>
+            <label class="switch">
+              <input type="checkbox" id="themeToggle">
+              <span class="slider round"></span>
+            </label>
+
+            </div>
+
     
             <nav class="navbar">
                 <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'administrator') : ?>
@@ -41,10 +50,9 @@ session_start();
 
         <div class="menu-reduit" id="menu-reduit"><i class="fas fa-bars"></i></div>
 
-        
-        
-
     </section>
+
+    
 
     <div class="menu-redu">
         <a href="admin.php">Admin</a>

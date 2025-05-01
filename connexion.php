@@ -24,25 +24,36 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $error = "Erreur de lecture des utilisateurs.";
         } else {
             foreach ($users as $user) {
-                if ($user['email'] === $email) {
-                    if ($user['role'] === 'banni') {
-                        $error = "Votre compte a été banni. Veuillez contacter un administrateur.";
-                        break;
-                    }
-            
-                    if (password_verify($password, $user['password'])) {
-                        $_SESSION['user'] = $user;
-                        header("Location: profil.php");
-                        exit();
-                    } else {
-                        $error = "Mot de passe incorrect.";
-                        break;
-                    }
+                $userTrouve = false;
+
+foreach ($users as $user) {
+    if ($user['email'] === $email) {
+        $userTrouve = true;
+
+        if ($user['role'] === 'banni') {
+            $error = "Votre compte a été banni. Veuillez contacter un administrateur.";
+            break;
+        }
+
+        if (password_verify($password, $user['password'])) {
+            $_SESSION['user'] = $user;
+            header("Location: profil.php");
+            exit();
+        } else {
+            $error = "Mot de passe incorrect.";
+            break;
+        }
+    }
+}
+
+if (!$userTrouve) {
+    $error = "Aucun compte trouvé avec cet email.";
+}
                 }
             }
         }
     }
-}
+
 ?>
 
 <!-- Affichage du formulaire HTML avec message d'erreur -->
@@ -53,6 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>Connexion</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="css/styleconnexion.css">
+    <link id="theme-style" rel="stylesheet" href="css/styleconnexion.css">
+    <script src="js/theme.js" defer></script>
 </head>
 <body>
 
@@ -146,6 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </div>
 </footer>
 
+<script src="js/form_validation.js"></script>
 
 </body>
 </html>

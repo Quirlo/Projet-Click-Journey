@@ -199,7 +199,30 @@ a:hover {
     text-decoration: underline;
 }
 
-
+.password-container {
+    position: relative;
+  }
+  
+  .password-container input[type="password"] {
+    width: 100%;
+    padding-right: 40px;
+  }
+  
+  .toggle-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #555;
+  }
+  
+  .toggle-icon:hover {
+    color: #000;
+  }
+  
+  
 
 
 /* FOOTER                                   */

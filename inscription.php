@@ -100,27 +100,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     
     <div class="container">
-        <form action="inscription.php" method="post" class="form-container">
-            <h2>Créer un compte</h2>
+    <form action="inscription.php" method="post" class="form-container" id="form-inscription">
+  <h2>Créer un compte</h2>
 
-            <?php if (isset($error)): ?>
-                <p style="color: red;"><?= $error ?></p>
-            <?php endif; ?>
+  <?php if (isset($error)) : ?>
+    <p style="color: red;"><?= $error ?></p>
+  <?php endif; ?>
 
-            <!-- Champs obligatoires -->
-            <input type="text" name="nom" placeholder="Nom complet *" required>
-            <input type="email" name="email" placeholder="Email *" required>
-            <input type="password" name="password" placeholder="Mot de passe *" required>
+  <!-- Champs obligatoires -->
+  <input type="text" name="nom" placeholder="Nom complet *" required>
 
-            <!-- Champs facultatifs -->
-            <input type="text" name="nickname" placeholder="Pseudo (facultatif)">
-            <label>Date de naissance (facultatif)</label>
-            <input type="date" name="birthdate">
-            <input type="text" name="address" placeholder="Adresse (facultatif)">
+  <input type="email" name="email" id="email" placeholder="Email *" required>
 
-            <button type="submit">Créer mon compte</button>
-            <p>Déjà inscrit ? <a href="connexion.php">Connectez-vous ici</a></p>
-        </form>
+  <div class="password-container">
+    <input type="password" name="password" id="password" placeholder="Mot de passe *" required>
+    <span class="toggle-icon" id="togglePassword">👁</span>
+  </div>
+
+  <div id="form-error" style="color: red;"></div>
+
+  <!-- Champs facultatifs -->
+  <input type="text" name="nickname" id="pseudo" placeholder="Pseudo (facultatif)">
+  
+  <label for="birthdate">Date de naissance (facultatif)</label>
+  <input type="date" name="birthdate" id="birthdate">
+
+  <input type="text" name="address" placeholder="Adresse (facultatif)">
+
+  <button type="submit" class="button-animate">Créer mon compte</button>
+
+  <p style="margin-top: 15px;">Déjà inscrit ? <a href="connexion.php">Connectez-vous ici</a></p>
+</form>
+
+
     </div>
 
     <footer>
@@ -168,6 +180,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </footer>
 
+<script src="js/form_validation.js" defer></script>
 
 </body>
 </html>
