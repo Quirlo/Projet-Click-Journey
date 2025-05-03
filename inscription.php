@@ -69,6 +69,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Inscription complète</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="css/styleinscription.css">
+    <link id="theme-style" rel="stylesheet" href="css/styleconnexion.css">
+    <script src="js/theme.js" defer></script>
 </head>
 <body>
 

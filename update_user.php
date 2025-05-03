@@ -1,47 +1,54 @@
 <?php
 session_start();
+header('Content-Type: application/json');
 
-// Vérifie si l'utilisateur est connecté
-if (!isset($_SESSION['user']) || !isset($_SESSION['user']['email'])) {
-    echo json_encode(["success" => false, "error" => "Non connecté"]);
+if (!isset($_SESSION['user']['email'])) {
+    echo json_encode(['success' => false, 'error' => 'Utilisateur non connecté']);
     exit;
 }
 
-// Lire les données JSON brutes
 $data = json_decode(file_get_contents("php://input"), true);
 
-// Vérifie si les données sont valides
 if (!$data || !is_array($data)) {
-    echo json_encode(["success" => false, "error" => "Données invalides"]);
+    echo json_encode(['success' => false, 'error' => 'Données invalides']);
     exit;
 }
 
-// Charger les utilisateurs
+$email = $_SESSION['user']['email'];
 $usersFile = 'data/users.json';
-$users = json_decode(file_get_contents($usersFile), true);
 
-$currentUserEmail = $_SESSION['user']['email'];
+if (!file_exists($usersFile)) {
+    echo json_encode(['success' => false, 'error' => 'Fichier introuvable']);
+    exit;
+}
+
+$users = json_decode(file_get_contents($usersFile), true);
 $found = false;
 
 foreach ($users as &$user) {
-    if ($user['email'] === $currentUserEmail) {
-        // Mise à jour des champs
-        foreach ($data as $key => $value) {
-            if ($key === 'email') {
+    if ($user['email'] === $email) {
+        // Validation email côté serveur
+        if (isset($data['email']) && !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            echo json_encode(['success' => false, 'error' => 'Email invalide']);
+            exit;
+}
+
+        foreach ($data as $field => $value) {
+            if ($field === 'email') {
                 $user['email'] = $value;
-                $_SESSION['user']['email'] = $value;
-            } elseif (isset($user['personal_info'][$key])) {
-                $user['personal_info'][$key] = $value;
+            } elseif (in_array($field, ['name', 'nickname', 'address'])) {
+                $user['personal_info'][$field] = $value;
             }
         }
+        $_SESSION['user'] = $user;
         $found = true;
         break;
     }
 }
 
 if ($found) {
-    file_put_contents($usersFile, json_encode($users, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-    echo json_encode(["success" => true]);
+    file_put_contents($usersFile, json_encode($users, JSON_PRETTY_PRINT));
+    echo json_encode(['success' => true]);
 } else {
-    echo json_encode(["success" => false, "error" => "Utilisateur non trouvé"]);
+    echo json_encode(['success' => false, 'error' => 'Utilisateur introuvable']);
 }

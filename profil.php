@@ -38,9 +38,11 @@ if (!$currentUser) {
     <title>Mon Profil</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="css/styleprofil.css">
+    <link id="theme-style" rel="stylesheet" href="css/styleprofil.css">
+    <script src="js/theme.js" defer></script>
 </head>
 
-<script src="JS/profil.js" defer></script>
+
 
 
 <body>
@@ -87,58 +89,65 @@ if (!$currentUser) {
     <form method="POST" action="update_user.php">
 
 <div class="profil-table-container">
-    <table class="profil-table">
-    <tr data-field="name">
-    <th>Nom complet</th>
+<table class="profil-table">
+  <!-- Pseudo -->
+  <tr data-field="nickname">
+    <td>Pseudo</td>
+    <td><input class="editable-field" type="text" name="nickname" value="<?= htmlspecialchars($currentUser['personal_info']['nickname']) ?>" disabled></td>
     <td>
-        <input type="text" class="editable-field" name="name" value="<?= htmlspecialchars($currentUser['personal_info']['name'] ?? '') ?>" disabled>
-        <button type="button" class="edit-btn">Modifier</button>
-        <button type="button" class="save-btn" style="display:none;">Valider</button>
-        <button type="button" class="cancel-btn" style="display:none;">Annuler</button>
-
+      <button type="button" class="edit-btn">Modifier</button>
+      <button type="button" class="save-btn" style="display:none;">Valider</button>
+      <button type="button" class="cancel-btn" style="display:none;">Annuler</button>
     </td>
-</tr>
+  </tr>
 
-<tr data-field="nickname">
-    <th>Pseudo</th>
+  <!-- Nom complet -->
+  <tr data-field="name">
+    <td>Nom complet</td>
+    <td><input class="editable-field" type="text" name="name" value="<?= htmlspecialchars($currentUser['personal_info']['name']) ?>" disabled></td>
     <td>
-        <input type="text" class="editable-field" name="nickname" value="<?= htmlspecialchars($currentUser['personal_info']['nickname'] ?? '') ?>" disabled>
-        <button type="button" class="edit-btn">Modifier</button>
-        <button type="button" class="save-btn" style="display:none;">Valider</button>
-        <button type="button" class="cancel-btn" style="display:none;">Annuler</button>
+      <button type="button" class="edit-btn">Modifier</button>
+      <button type="button" class="save-btn" style="display:none;">Valider</button>
+      <button type="button" class="cancel-btn" style="display:none;">Annuler</button>
     </td>
-</tr>
+  </tr>
 
-<tr data-field="email">
-    <th>Email</th>
+  <!-- Email -->
+  <tr data-field="email">
+    <td>Email</td>
+    <td><input class="editable-field" type="email" name="email" value="<?= htmlspecialchars($currentUser['email']) ?>" disabled></td>
     <td>
-        <input type="email" class="editable-field" name="email" value="<?= htmlspecialchars($currentUser['email'] ?? '') ?>" disabled>
-        <button type="button" class="edit-btn">Modifier</button>
-        <button type="button" class="save-btn" style="display:none;">Valider</button>
-        <button type="button" class="cancel-btn" style="display:none;">Annuler</button>
+      <button type="button" class="edit-btn">Modifier</button>
+      <button type="button" class="save-btn" style="display:none;">Valider</button>
+      <button type="button" class="cancel-btn" style="display:none;">Annuler</button>
     </td>
-</tr>
-        <tr><th>Date de naissance</th><td><?= htmlspecialchars($currentUser['personal_info']['birthdate'] ?? '') ?></td></tr>
-        <!-- Adresse -->
-        <tr data-field="address">
-    <th>Adresse</th>
+  </tr>
+
+  <!-- Adresse -->
+  <tr data-field="address">
+    <td>Adresse</td>
+    <td><input class="editable-field" type="text" name="address" value="<?= htmlspecialchars($currentUser['personal_info']['address']) ?>" disabled></td>
     <td>
-        <input type="text" class="editable-field" name="address" value="<?= htmlspecialchars($currentUser['personal_info']['address'] ?? '') ?>" disabled>
-        <button type="button" class="edit-btn">Modifier</button>
-        <button type="button" class="save-btn" style="display:none;">Valider</button>
-        <button type="button" class="cancel-btn" style="display:none;">Annuler</button>
+      <button type="button" class="edit-btn">Modifier</button>
+      <button type="button" class="save-btn" style="display:none;">Valider</button>
+      <button type="button" class="cancel-btn" style="display:none;">Annuler</button>
     </td>
-</tr>
-        <tr><th>Date d'inscription</th><td><?= htmlspecialchars($currentUser['registration_date'] ?? '') ?></td></tr>
-        <tr><th>Dernière connexion</th><td><?= htmlspecialchars($currentUser['last_login_date'] ?? '') ?></td></tr>
-    </table>
+  </tr>
 
-    <!-- Bouton Soumettre -->
-    <div style="text-align: center; margin-top: 1em;">
-    <button type="button" id="btn-soumettre" style="display:none;">Soumettre</button>
+  <!-- Non modifiables -->
+  <tr><td>Date de naissance</td><td><?= htmlspecialchars($currentUser['personal_info']['birthdate']) ?></td><td></td></tr>
+  <tr><td>Date d'inscription</td><td><?= htmlspecialchars($currentUser['registration_date']) ?></td><td></td></tr>
+  <tr><td>Dernière connexion</td><td><?= htmlspecialchars($currentUser['last_login_date']) ?></td><td></td></tr>
+</table>
 
+<!-- Bouton global -->
+<button id="btn-soumettre" type="button" style="display:none;">Soumettre les modifications</button>
+
+
+
+<!-- Lien JS -->
+<script src="js/profil.js"></script>
     </div>
-</div>
 </form>
 
 
@@ -155,6 +164,8 @@ if (!$currentUser) {
 
 
 </div>
+<div id="notif" style="display:none;"></div>
+
 </body>
 </html>
 

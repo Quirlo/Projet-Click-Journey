@@ -1,18 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const rows = document.querySelectorAll(".profil-table tr");
     const btnSoumettre = document.getElementById('btn-soumettre');
+    const inputs = document.querySelectorAll("input.editable-field");
     let modifications = {};
 
-    rows.forEach(row => {
-        const input = row.querySelector("input.editable-field");
-        const btnEdit = row.querySelector("button.edit-btn");
-        const btnSave = row.querySelector("button.save-btn");
-        const btnCancel = row.querySelector("button.cancel-btn");
-
-        if (!input || !btnEdit || !btnSave || !btnCancel) return;
-
-        const originalValue = input.value;
+    inputs.forEach(input => {
+        const row = input.closest("tr");
         const field = row.dataset.field;
+        const btnEdit = row.querySelector(".edit-btn");
+        const btnSave = row.querySelector(".save-btn");
+        const btnCancel = row.querySelector(".cancel-btn");
+        const originalValue = input.value;
 
         btnEdit.addEventListener("click", () => {
             input.disabled = false;
@@ -30,46 +27,63 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         btnSave.addEventListener("click", () => {
-            const isEmail = input.name === "email";
-            if (isEmail && !validateEmail(input.value)) {
-                alert("❌ Email invalide.");
-                return;
-            }
-
+            const newValue = input.value.trim();
             input.disabled = true;
             btnEdit.style.display = "inline-block";
             btnSave.style.display = "none";
             btnCancel.style.display = "none";
 
-            const field = row.dataset.field;
-
-            if (input.value !== originalValue) {
-                modifications[field] = input.value;
-                btnSoumettre.style.display = 'inline-block';
-            }
+            
+            modifications[field] = newValue;
+            btnSoumettre.style.display = "inline-block";
+            
         });
     });
 
-    function validateEmail(email) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
+    btnSoumettre.addEventListener("click", () => {
+        if (Object.keys(modifications).length === 0) return;
+        // Validation de base
+        if (modifications.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(modifications.email)) {
+            showNotif("❌ Email invalide", false);
+            return;
+        }
 
-    btnSoumettre.addEventListener('click', () => {
+
         fetch('update_user.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(modifications)
         })
-        .then(res => res.json())
+        .then(response => response.json())
         .then(data => {
             if (data.success) {
-                alert("✅ Modifications enregistrées !");
-                btnSoumettre.style.display = 'none';
+                showNotif("✅ Modifications enregistrées !");
+                btnSoumettre.style.display = "none";
                 modifications = {};
             } else {
-                alert("❌ Échec : " + (data.error || "Erreur inconnue"));
+                showNotif("❌ Erreur : " + (data.error || "Erreur inconnue"), false);
             }
         })
-        .catch(() => alert("❌ Erreur serveur"));
+        .catch(() => showNotif("❌ Erreur réseau", false));
     });
+
+    function showNotif(message, success = true) {
+        const notif = document.getElementById("notif");
+        notif.innerText = message;
+        notif.style.backgroundColor = success ? "#4caf50" : "#f44336";
+        notif.style.color = "#fff";
+        notif.style.display = "block";
+        notif.style.padding = "10px 20px";
+        notif.style.borderRadius = "8px";
+        notif.style.fontWeight = "bold";
+        notif.style.position = "fixed";
+        notif.style.bottom = "20px";
+        notif.style.left = "50%";
+        notif.style.transform = "translateX(-50%)";
+        notif.style.zIndex = "1000";
+
+        setTimeout(() => {
+            notif.style.display = "none";
+        }, 3000);
+    }
 });
