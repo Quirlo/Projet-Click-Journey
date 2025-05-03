@@ -38,6 +38,8 @@ if (!$targetUser) {
     <title>Voyages de <?= htmlspecialchars($foundUser['personal_info']['name'] ?? 'Utilisateur') ?></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="css/styleconsulter.css"> <!-- ou un CSS spécifique -->
+    <link id="theme-style" rel="stylesheet" href="css/styleconsulter.css">
+    <script src="js/theme.js" defer></script>
 </head>
 <body>
 <header>

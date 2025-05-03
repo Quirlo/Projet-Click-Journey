@@ -51,6 +51,8 @@ if (isset($_POST['emailToUnban'])) {
     <title>Admin - Gestion des Utilisateurs</title>
     <link rel="stylesheet" href="css/styleadmin.css"> <!-- Lien vers le CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link id="theme-style" rel="stylesheet" href="css/styleadmin.css">
+    <script src="js/theme.js" defer></script>
 </head>
 <body>
     <header>

@@ -1,0 +1,126 @@
+.header {
+    background-color: #1f1f1f !important;
+    color: white !important;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+    padding: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
+  }
+  
+  .header .logo {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: white !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .header .navbar a {
+    font-size: 15px;
+    margin-left: 2rem;
+    color: white !important;
+  }
+  
+  .header .menu-reduit {
+    color: white !important;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: none;
+  }
+  
+  
+/* Footer texte en blanc pour le thème sombre */
+
+.footer-section,
+.footer-container,
+footer {
+  background-color: #1a1a1a;
+  color: white;
+}
+
+.footer-section a,
+.footer-bottom {
+  color: white;
+}
+
+.footer-section a:hover {
+  color: #ff7f50;
+}
+
+footer,
+footer h2,
+footer h3,
+footer p,
+footer a,
+.footer-section,
+.footer-bottom {
+color: white !important;
+}
+
+footer a:hover {
+color: #fee126; /* couleur hover lisible */
+}
+
+body {
+    background-color: #121212 !important;
+    color: white !important;
+  }
+  
+  /* Table principale */
+  table {
+    background-color: #1f1f1f !important;
+    color: white !important;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    border: 1px solid #333;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  /* Ligne impaire (effet zébré léger si souhaité) */
+  tr:nth-child(even) {
+    background-color: #181818;
+  }
+  
+  /* Bouton Suivant */
+  button, .btn-blue {
+    background-color: #1a73e8 !important;
+    color: white !important;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  /* Boutons dans tableau */
+  button.bannir {
+    background-color: #e74c3c !important;
+    color: white !important;
+  }
+  
+  button.consulter {
+    background-color: #f1c40f !important;
+    color: black !important;
+  }
+  
+  /* Section titre */
+  h1, h2, h3, h4, h5, h6 {
+    color: white !important;
+  }
+  
+  /* Pour que les cellules ne soient pas blanches */
+  td, th {
+    background-color: #1f1f1f !important;
+  }
+  
+  
