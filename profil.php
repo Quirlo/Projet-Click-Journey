@@ -38,9 +38,10 @@ if (!$currentUser) {
     <title>Mon Profil</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="css/styleprofil.css">
-    <link id="theme-style" rel="stylesheet" href="css/styleprofil.css">
-    <script src="js/theme.js" defer></script>
 </head>
+
+<script src="JS/profil.js" defer></script>
+
 
 <body>
 
@@ -78,17 +79,68 @@ if (!$currentUser) {
     </div>
 
     <h1 class="profil-title">Mon compte</h1>
+    <?php if (isset($_GET['updated'])): ?>
+    <p style="text-align:center; color:green;">✅ Modifications enregistrées.</p>
+<?php endif; ?>
+
+
+    <form method="POST" action="update_user.php">
+
 <div class="profil-table-container">
     <table class="profil-table">
-        <tr><th>Nom complet</th><td><?= htmlspecialchars($currentUser['personal_info']['name'] ?? '') ?></td></tr>
-        <tr><th>Pseudo</th><td><?= htmlspecialchars($currentUser['personal_info']['nickname'] ?? '') ?></td></tr>
-        <tr><th>Email</th><td><?= htmlspecialchars($currentUser['email'] ?? '') ?></td></tr>
+    <tr data-field="name">
+    <th>Nom complet</th>
+    <td>
+        <input type="text" class="editable-field" name="name" value="<?= htmlspecialchars($currentUser['personal_info']['name'] ?? '') ?>" disabled>
+        <button type="button" class="edit-btn">Modifier</button>
+        <button type="button" class="save-btn" style="display:none;">Valider</button>
+        <button type="button" class="cancel-btn" style="display:none;">Annuler</button>
+
+    </td>
+</tr>
+
+<tr data-field="nickname">
+    <th>Pseudo</th>
+    <td>
+        <input type="text" class="editable-field" name="nickname" value="<?= htmlspecialchars($currentUser['personal_info']['nickname'] ?? '') ?>" disabled>
+        <button type="button" class="edit-btn">Modifier</button>
+        <button type="button" class="save-btn" style="display:none;">Valider</button>
+        <button type="button" class="cancel-btn" style="display:none;">Annuler</button>
+    </td>
+</tr>
+
+<tr data-field="email">
+    <th>Email</th>
+    <td>
+        <input type="email" class="editable-field" name="email" value="<?= htmlspecialchars($currentUser['email'] ?? '') ?>" disabled>
+        <button type="button" class="edit-btn">Modifier</button>
+        <button type="button" class="save-btn" style="display:none;">Valider</button>
+        <button type="button" class="cancel-btn" style="display:none;">Annuler</button>
+    </td>
+</tr>
         <tr><th>Date de naissance</th><td><?= htmlspecialchars($currentUser['personal_info']['birthdate'] ?? '') ?></td></tr>
-        <tr><th>Adresse</th><td><?= htmlspecialchars($currentUser['personal_info']['address'] ?? '') ?></td></tr>
+        <!-- Adresse -->
+        <tr data-field="address">
+    <th>Adresse</th>
+    <td>
+        <input type="text" class="editable-field" name="address" value="<?= htmlspecialchars($currentUser['personal_info']['address'] ?? '') ?>" disabled>
+        <button type="button" class="edit-btn">Modifier</button>
+        <button type="button" class="save-btn" style="display:none;">Valider</button>
+        <button type="button" class="cancel-btn" style="display:none;">Annuler</button>
+    </td>
+</tr>
         <tr><th>Date d'inscription</th><td><?= htmlspecialchars($currentUser['registration_date'] ?? '') ?></td></tr>
         <tr><th>Dernière connexion</th><td><?= htmlspecialchars($currentUser['last_login_date'] ?? '') ?></td></tr>
     </table>
+
+    <!-- Bouton Soumettre -->
+    <div style="text-align: center; margin-top: 1em;">
+    <button type="button" id="btn-soumettre" style="display:none;">Soumettre</button>
+
+    </div>
 </div>
+</form>
+
 
 <h2 class="profil-reserved-title">Mes voyages réservés :</h2>
 <div class="trips-table-container">
