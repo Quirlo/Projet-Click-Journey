@@ -15,74 +15,81 @@ Projet-Click-JourneY/
 │
 ├── data/                   # Fichiers JSON (trips, users)
 │   ├── trips.json
-│   ├
 │   └── users.json
 │
 ├── image/                  # Images utilisées dans le site
 │
 ├── js/                     # Scripts JavaScript (phase 3)
-│   ├── form_validation.js      # (Nouveau) Validation formulaire
-│   ├── panier.js               # (Nouveau) Gestion du panier
-│   ├── personnalisation.js     # (Nouveau) Personnalisation dynamique
-│   ├── profil.js               # (Nouveau) Modification profil en direct
-│   ├── theme.js                # (Nouveau) Changement de thème
-│   └── tri.js                  # (Nouveau) Filtres + tri dynamique
+│   ├── form_validation.js      # Validation des formulaires
+│   ├── panier.js               # Gestion du panier
+│   ├── personnalisation.js     # Calcul dynamique du prix
+│   ├── profil.js               # Édition du profil en direct
+│   ├── theme.js                # Gestion du thème (clair/sombre)
+│   └── tri.js                  # Filtres & tri dynamiques
 │
 ├── testphp/                # Fichiers de tests PHP
 │
 ├── admin.php               # Interface d'administration
-├── ajouter_panier.php      # (Nouveau) Ajout d’un voyage personnalisé au panier
+├── ajouter_panier.php      # (Nouveau) Ajout d’un voyage au panier
 ├── connexion.php           # Page de connexion
-├── consulter.php           # Consultation des réservations
-├── destination.php         # Liste des voyages (publique)
+├── consulter.php           # Détails des voyages réservés
+├── destination.php         # Liste publique des voyages
 ├── index.php               # Page d'accueil
 ├── inscription.php         # Page d'inscription
 ├── logout.php              # Déconnexion utilisateur
-├── panier.php              # (Nouveau) Page du panier
+├── panier.php              # (Nouveau) Panier avec voyages personnalisés
 ├── payment.php             # Interface de paiement
-├── prepare_payment.php     # (Nouveau) Préparation paiement
-├── profil.php              # Accès au profil utilisateur
-├── recapprofil.php         # Historique des voyages (profil ou admin)
-├── recapitulatif.php       # Page de récapitulatif d'un voyage personnalisé
+├── prepare_payment.php     # (Nouveau) Préparation des paramètres de paiement
+├── profil.php              # Page profil avec champs éditables
+├── recapprofil.php         # Historique des voyages réservés
+├── recapitulatif.php       # Récapitulatif d'un voyage personnalisé
 ├── retirer_panier.php      # (Nouveau) Suppression d’un voyage du panier
-├── update_user.php         # Mise à jour profil utilisateur
-├── validation_paiement.php # Vérification après retour de paiement
-├── voyage.php              # Détails d’un voyage cliquable avec personnalisation
+├── update_user.php         # Mise à jour du profil
+├── validation_paiement.php # Traitement du retour de paiement
+├── voyage.php              # Détails + personnalisation d’un voyage
 │
 ├── README.md               # (Ce fichier)
 ├── README_XPlore.txt       # Informations spécifiques à XPlore
-└── Rapport.pdf             # Rapport de projet (phase 3 à jour)
+└── Rapport.pdf             # Rapport de projet à jour
 
-Fonctionnalités principales
+## ✅ Fonctionnalités principales
 
- Consultation libre des voyages (page destination.php)  
- Fiches détaillées avec personnalisation (hébergement, restauration, activités)  
- Authentification utilisateur (inscription, connexion)  
- Récapitulatif et réservation personnalisée  
- Système de panier avant paiement  
- Simulation de paiement via interface CY Bank  
- Interface administrateur (gestion des utilisateurs, bannissement, consultation des réservations)  
- Changement de thème (clair/sombre) via cookie  
- Validation JS des formulaires, édition de profil sans rechargement  
- Tri & filtres dynamiques des voyages  
+🔎 Consultation libre des voyages (page destination.php)  
+📄 Fiches détaillées avec personnalisation (hébergement, restauration, activités)  
+💬 Authentification utilisateur (inscription, connexion)  
+🧾 Récapitulatif et réservation personnalisée  
+🛍️ **Nouveau** : système de panier avant paiement  
+💳 Simulation de paiement via interface CY Bank  
+🛠️ Interface administrateur (consultation, bannissement, etc.)  
+🎨 **Nouveau** : gestion dynamique du thème clair/sombre (via cookies)  
+🧠 **Nouveau** : validation JS des formulaires, édition de profil inline  
+📊 **Nouveau** : filtres et tri dynamiques des voyages sans rechargement  
 
- 📦 Format des données JSON
+## 📦 Format des données JSON
 
- trips.json : voyages avec personnalisation par étapes  
- users.json : utilisateurs avec réservations, rôles, dates, identifiants  
+### `trips.json`
+Contient les voyages, leurs étapes, prix de base et options personnalisables avec prix unitaires.
 
-##  Comptes de test
+### `users.json`
+Contient les utilisateurs (email, mot de passe, rôle, réservations, etc.).
 
-###  Administrateur  
+## 👤 Comptes de test
+
+### 🔑 Administrateur  
 Email : `test@admin.com`  
 Mot de passe : `oli`
 
-###  Client classique  
+### 👥 Client classique  
 Email : `slave1@test.com`  
 Mot de passe : `1234`
 
+## 🚀 Lancer le projet
 
-Auteurs
+1. Copier le dossier dans `htdocs/` (serveur local avec XAMPP par ex.)  
+2. Démarrer **Apache**  
+3. Accéder à : [http://localhost/Projet-Click-JourneY](http://localhost/Projet-Click-JourneY)
+
+## ✏️ Auteurs
 
 - Mohamed Ouhab  
 - Edonis Shaljani  
