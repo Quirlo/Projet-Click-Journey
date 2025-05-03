@@ -156,6 +156,8 @@ if (!$currentUser) {
 <?php if (!empty($currentUser['trips_history'])): ?>
     <div class="trips-table-container" style="text-align:center;">
     <a href="recapprofil.php?index=0" class="trip-details-btn">Consulter mes voyages</a>
+    <a href="panier.php" class="btn-panier">Voir mon panier</a>
+
     </div>
 <?php else: ?>
     <p>Aucun voyage réservé pour l’instant.</p>

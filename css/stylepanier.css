@@ -1,0 +1,152 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f5f6fa;
+    margin: 0;
+    padding: 0;
+    color: #222;
+}
+
+
+.empty-panier {
+    max-width: 600px;
+    margin: 100px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.empty-panier h1 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.empty-panier p {
+    font-size: 1.2rem;
+    margin: 20px 0;
+}
+
+.btn-retour {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.btn-retour:hover {
+    background-color: #0056b3;
+}
+
+
+h1 {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 2rem;
+    color: #333;
+}
+
+.voyage-container {
+    max-width: 800px;
+    margin: 30px auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+.voyage-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+    color: #1d3557;
+}
+
+.step-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #fafafa;
+}
+
+.step-card h3 {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #2f2f2f;
+}
+
+.step-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.step-card li {
+    margin: 6px 0;
+    font-size: 0.95rem;
+}
+
+.panier-buttons {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.panier-buttons a,
+.panier-buttons form {
+    display: inline-block;
+    margin: 10px 5px;
+}
+
+.panier-buttons .btn-payer,
+.panier-buttons .btn-retirer,
+.panier-buttons .btn-suivant,
+.panier-buttons .btn-retour {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-payer {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-payer:hover {
+    background-color: #218838;
+}
+
+.btn-retirer {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-retirer:hover {
+    background-color: #c82333;
+}
+
+.btn-suivant {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-suivant:hover {
+    background-color: #0056b3;
+}
+
+.btn-retour {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-retour:hover {
+    background-color: #5a6268;
+}

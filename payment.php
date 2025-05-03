@@ -1,24 +1,48 @@
 <?php
 session_start();
-if (!isset($_SESSION['recap'])) {
-    header('Location: recapitulatif.php');
+
+$titreVoyage = 'Voyage personnalisé';
+$montant = 0;
+
+// Si on vient du panier
+if (isset($_GET['index']) && isset($_SESSION['panier'][$_GET['index']])) {
+    $reservation = $_SESSION['panier'][$_GET['index']];
+    $tripId = $reservation['trip_id'];
+    $customOptions = $reservation['custom_options'];
+    $montant = $reservation['prix_total'] ?? 0;
+    $montant = isset($reservation['prix_total']) ? floatval($reservation['prix_total']) : 0;
+
+
+    // Charger le nom du voyage depuis trips.json
+    $trips = json_decode(file_get_contents('data/trips.json'), true);
+    foreach ($trips as $trip) {
+        if ($trip['id'] == $tripId) {
+            $titreVoyage = $trip['title'];
+            break;
+        }
+    }
+}
+// Sinon on vient du recapitulatif
+elseif (isset($_SESSION['recap'])) {
+    $recap = $_SESSION['recap'];
+    $tripId = $recap['trip_id'];
+    $customOptions = $recap['custom_options'];
+    $montant = $recap['prix_total'] ?? 0;
+
+    $trips = json_decode(file_get_contents('data/trips.json'), true);
+    foreach ($trips as $trip) {
+        if ($trip['id'] == $tripId) {
+            $titreVoyage = $trip['title'];
+            break;
+        }
+    }
+} else {
+    // Aucune donnée trouvée, redirige par sécurité
+    header('Location: index.php');
     exit();
 }
 
-// Charger les infos du voyage
-$recap = $_SESSION['recap'];
 
-// On va récupérer le prix à partir du fichier JSON
-$trips = json_decode(file_get_contents('data/trips.json'), true);
-$montant = 0;
-$titreVoyage = 'Voyage personnalisé';
-foreach ($trips as $trip) {
-    if ($trip['id'] == $recap['trip_id']) {
-        $montant = $trip['price'];
-        $titreVoyage = $trip['title'];
-        break;
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +59,7 @@ foreach ($trips as $trip) {
         <div class="payment-box">
             <p><strong>Voyage :</strong> <?= htmlspecialchars($titreVoyage) ?></p>
             <p><strong>Montant à payer :</strong> <?= $montant ?> €</p>
+
 
             <form method="post" action="validation_paiement.php">
                 <div class="form-group">
@@ -56,7 +81,7 @@ foreach ($trips as $trip) {
                 <button type="submit" name="valider_paiement" class="btn-valider">✅ Payer maintenant</button>
             </form>
 
-            <a href="recapitulatif.php"><button type="button" class="btn-annuler">❌ Annuler</button></a>
+            <a href="destination.php"><button type="button" class="btn-annuler">❌ Annuler</button></a>
         </div>
     </div>
 

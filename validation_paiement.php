@@ -1,35 +1,45 @@
 <?php
 session_start();
 
-// Vérifie si les infos de paiement et de réservation sont présentes
+$redirect = false;
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['valider_paiement']) && isset($_SESSION['recap'])) {
     $recap = $_SESSION['recap'];
+    $recap['date'] = date('Y-m-d');
     $email = $_SESSION['user']['email'];
 
     // Lire les utilisateurs existants
     $usersFile = 'data/users.json';
     $users = json_decode(file_get_contents($usersFile), true);
 
-    // Ajouter le voyage à l'utilisateur
+    // Ajouter le voyage à l'historique
     foreach ($users as &$user) {
         if ($user['email'] === $email) {
+            if (!isset($recap['date'])) {
+                $recap['date'] = date('Y-m-d');
+            }
             $user['trips_history'][] = $recap;
-            $_SESSION['user'] = $user; // met à jour la session
+            $_SESSION['user'] = $user;
             break;
         }
     }
 
     // Sauvegarde
     file_put_contents($usersFile, json_encode($users, JSON_PRETTY_PRINT));
-    unset($_SESSION['recap']); // Nettoyage après paiement
 
-    // Redirection différée vers le profil
+    // ✅ Si c'est un paiement depuis le panier, on le retire :
+    if (isset($recap['source']) && $recap['source'] === 'panier') {
+        $index = $recap['index'] ?? null;
+        if ($index !== null && isset($_SESSION['panier'][$index])) {
+            unset($_SESSION['panier'][$index]);
+            $_SESSION['panier'] = array_values($_SESSION['panier']); // Réindexation propre
+        }
+    }
+
+    unset($_SESSION['recap']); // Nettoyage
     $redirect = true;
-} else {
-    $redirect = false;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -47,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['valider_paiement']) &
         <?php else: ?>
             <h2>Erreur ❌</h2>
             <p>Une erreur est survenue lors du paiement.</p>
-            <a href="recapitulatif.php">↩ Retour au récapitulatif</a>
+            <a href="destination.php">↩ Retour vers les voyages</a>
         <?php endif; ?>
     </div>
 </body>

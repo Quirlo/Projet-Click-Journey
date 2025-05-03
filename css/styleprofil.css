@@ -273,6 +273,27 @@ section{
   transform: translateY(-2px);
 }
 
+.btn-panier {
+  background-color: #6c5ce7; /* violet */
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  margin-left: 10px;
+  display: inline-block;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-panier:hover {
+  background-color: #5942d3; /* violet foncé */
+  color: white;
+  text-decoration: none;
+}
+
+
+
 
 
 /* FOOTER */

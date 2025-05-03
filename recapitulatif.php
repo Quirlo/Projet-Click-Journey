@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['step_title'])) {
             'step' => $_POST['step_title'][$i],
             'hebergement' => $_POST['hebergement'][$i],
             'restauration' => $_POST['restauration'][$i],
-            'activite' => $_POST['activite'][$i],
+            'activites' => $_POST['activites'][$i],
             'transport' => $_POST['transport'][$i],
             'participants' => $_POST['participants'][$i]
         ];
@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['step_title'])) {
         'trip_id' => $tripId,
         'title' => 'Voyage personnalisé',
         'date' => date('Y-m-d'),
+        'prix_total' => $_POST['prix_total'] ?? 0,
         'custom_options' => $steps
     ];
     $_SESSION['recap'] = $recap;
@@ -58,6 +59,8 @@ if (isset($_POST['confirmer_reservation']) && isset($_SESSION['recap'])) {
     <meta charset="UTF-8">
     <title>Récapitulatif</title>
     <link rel="stylesheet" href="css/stylevoyage.css">
+    <link id="theme-style" rel="stylesheet" href="css/stylerecapitulatif.css">
+    <script src="js/theme.js" defer></script>
 </head>
 <body>
     <h1>Récapitulatif de votre voyage</h1>
@@ -81,7 +84,7 @@ if (isset($_POST['confirmer_reservation']) && isset($_SESSION['recap'])) {
 </tr>
 <tr>
     <td><strong>Activité</strong></td>
-    <td><?= htmlspecialchars($step['activite'] ?? 'Non défini') ?></td>
+    <td><?= htmlspecialchars($step['activites'] ?? 'Non défini') ?></td>
 </tr>
 <tr>
     <td><strong>Transport</strong></td>
@@ -99,12 +102,35 @@ if (isset($_POST['confirmer_reservation']) && isset($_SESSION['recap'])) {
         </ol>
         <form action="payment.php" method="post" style="margin-top: 30px;">
         <input type="hidden" name="recap_data" value='<?= htmlspecialchars(json_encode($_SESSION['recap']), ENT_QUOTES, "UTF-8") ?>'>
+        <input type="hidden" name="prix_total" id="prix_total_input" value="0">
+
         <button type="submit" class="confirm-btn">Confirmer ma réservation</button>
         </form>
+        
+        <form method="post" action="ajouter_panier.php" style="display: inline;">
+            <input type="hidden" name="recap_data" id="recap_data_input" value='<?= htmlspecialchars(json_encode($_SESSION["recap"]), ENT_QUOTES, "UTF-8") ?>'>
+            <input type="hidden" name="prix_total" id="prix_total_input" value="0">
+            <button type="submit" class="recap-btn">Ajouter au panier</button>
+    
+        </form>
 
-        <a href="javascript:history.back()">← Retour à la personnalisation</a>
+
+        <a href="voyage.php?id=<?= htmlspecialchars($_SESSION['recap']['trip_id']) ?>" class="btn-retour">← Retour à la personnalisation</a>
+
     <?php else: ?>
         <p>Aucune donnée de personnalisation trouvée.</p>
     <?php endif; ?>
+
+
+    <script>
+    const tripId = <?= json_encode($_GET['id']) ?>;
+</script>
+<script src="js/panier.js"></script>
+
+
+
 </body>
+
+
 </html>
+

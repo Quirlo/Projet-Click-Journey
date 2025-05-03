@@ -2,9 +2,7 @@
 session_start();
 $isConnected = isset($_SESSION['user']);
 
-// Chargement du voyage sélectionné
 $id = $_GET['id'] ?? null;
-
 if (!$id) {
     echo "Aucun voyage sélectionné.";
     exit;
@@ -12,14 +10,12 @@ if (!$id) {
 
 $trips = json_decode(file_get_contents('data/trips.json'), true);
 $trip = null;
-
 foreach ($trips as $t) {
     if ($t['id'] == $id) {
         $trip = $t;
         break;
     }
 }
-
 if (!$trip) {
     echo "Voyage non trouvé.";
     exit;
@@ -32,122 +28,89 @@ if (!$trip) {
     <meta charset="UTF-8">
     <title><?= htmlspecialchars($trip['title']) ?> - Détail</title>
     <link rel="stylesheet" href="css/stylevoyage.css">
+    <script src="js/personnalisation.js" defer></script>
+    <link id="theme-style" rel="stylesheet" href="css/stylevoyage.css">
+    <script src="js/theme.js" defer></script>
 </head>
 <body>
-
 <section class="header">
-         
-         <a href="index.php" class="logo">XPlore</a>
- 
-         <nav class="navbar">
-             <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'administrator') : ?>
-                 <a href="admin.php">Admin</a>
-             <?php endif; ?>
-             <a href="index.php">Accueil</a>
-             <a href="destination.php">Destination</a>
+    <a href="index.php" class="logo">XPlore</a>
+    <nav class="navbar">
+        <?php if ($isConnected && $_SESSION['user']['role'] === 'administrator') : ?>
+            <a href="admin.php">Admin</a>
+        <?php endif; ?>
+        <a href="index.php">Accueil</a>
+        <a href="destination.php">Destination</a>
+        <?php if ($isConnected): ?>
+            <a href="profil.php">Mon Profil</a>
+            <a href="logout.php">Déconnexion</a>
+        <?php else: ?>
+            <a href="connexion.php">Se connecter</a>
+        <?php endif; ?>
+    </nav>
+</section>
 
-             <?php if (isset($_SESSION['user'])): ?>
-                 <a href="profil.php">Mon Profil</a>
-                 <a href="logout.php">Déconnexion</a>
-             <?php else: ?>
-                 <a href="connexion.php">Se connecter</a>
-             <?php endif; ?>
-         </nav>
+<header><h1><?= htmlspecialchars($trip['title']) ?></h1></header>
+<section class="voyage-detail">
+    <img src="<?= htmlspecialchars($trip['image']) ?>" alt="<?= $trip['title'] ?>" style="width: 100%; max-width: 600px;">
+    <p><strong>Dates :</strong> <?= $trip['start_date'] ?> → <?= $trip['end_date'] ?> (<?= $trip['duration'] ?> jours)</p>
+    <p><strong>Prix de base :</strong> <?= $trip['price'] ?> €</p>
+    <p><strong>Difficulté :</strong> <?= ucfirst($trip['difficulty']) ?></p>
+    <p><strong>Saison :</strong> <?= ucfirst($trip['season']) ?></p>
+    <p><?= nl2br($trip['long_description']) ?></p>
 
-     </nav>
-     <div class="menu-reduit" id="menu-reduit"><i class="fas fa-bars"></i></div>
+    <h2>Étapes :</h2>
+    <?php if ($isConnected): ?>
+    <form method="post" action="recapitulatif.php">
+    <?php endif; ?>
+    <ol>
+        <?php foreach ($trip['steps'] as $index => $step): ?>
+            <li class="bloc-personnalisation">
+                <h3><?= htmlspecialchars($step['title']) ?></h3>
+                <p><strong>Dates :</strong> <?= htmlspecialchars($step['arrival_date']) ?> → <?= htmlspecialchars($step['departure_date']) ?></p>
+                <p><strong>Lieu :</strong> <?= htmlspecialchars($step['location']['city']) ?></p>
 
-
- </section>
-
-    <heder>
-        <h1><?= htmlspecialchars($trip['title']) ?></h1>
-    </heder>
-
-    <section class="voyage-detail">
-        <img src="<?= htmlspecialchars($trip['image']) ?>" alt="<?= $trip['title'] ?>" style="width: 100%; max-width: 600px;">
-
-        <p><strong>Dates :</strong> <?= $trip['start_date'] ?> → <?= $trip['end_date'] ?> (<?= $trip['duration'] ?> jours)</p>
-        <p><strong>Prix :</strong> <?= $trip['price'] ?> €</p>
-        <p><strong>Difficulté :</strong> <?= ucfirst($trip['difficulty']) ?></p>
-        <p><strong>Saison :</strong> <?= ucfirst($trip['season']) ?></p>
-
-        <p><?= nl2br($trip['long_description']) ?></p>
-
-        <h2>Étapes :</h2>
-        <ol>
-            <?php foreach ($trip['steps'] as $step): ?>
-                <li>
-                    <h3><?= $step['title'] ?></h3>
-                    <p><strong>Dates :</strong> <?= $step['arrival_date'] ?> → <?= $step['departure_date'] ?></p>
-                    <p><strong>Lieu :</strong> <?= $step['location']['city'] ?></p>
-
-                    <p><strong>Hébergement :</strong> <?= implode(', ', $step['options']['hebergement']) ?></p>
-                    <p><strong>Restauration :</strong> <?= implode(', ', $step['options']['restauration']) ?></p>
-                    <p><strong>Activités :</strong> <?= implode(', ', $step['options']['activites']) ?></p>
-                    <p><strong>Transport :</strong> <?= implode(', ', $step['options']['transport']) ?></p>
-
-                    <?php if ($isConnected): ?>
-                <form method="post" action="recapitulatif.php">
+                <?php if ($isConnected): ?>
                     <h4>Personnalisez cette étape :</h4>
-
-                    <!-- On cache des données pour transfert -->
                     <input type="hidden" name="trip_id" value="<?= $trip['id'] ?>">
                     <input type="hidden" name="step_title[]" value="<?= htmlspecialchars($step['title']) ?>">
 
-                    <label>Hébergement :</label>
-                    <select name="hebergement[]">
-                        <?php foreach ($step['options']['hebergement'] as $option): ?>
-                            <option value="<?= $option ?>"><?= $option ?></option>
-                        <?php endforeach; ?>
-                    </select><br>
-
-                    <label>Restauration :</label>
-                    <select name="restauration[]">
-                        <?php foreach ($step['options']['restauration'] as $option): ?>
-                            <option value="<?= $option ?>"><?= $option ?></option>
-                        <?php endforeach; ?>
-                    </select><br>
-
-                    <label>Activité :</label>
-                    <select name="activite[]">
-                        <?php foreach ($step['options']['activites'] as $option): ?>
-                            <option value="<?= $option ?>"><?= $option ?></option>
-                        <?php endforeach; ?>
-                    </select><br>
-
-                    <label>Transport :</label>
-                    <select name="transport[]">
-                        <?php foreach ($step['options']['transport'] as $option): ?>
-                            <option value="<?= $option ?>"><?= $option ?></option>
-                        <?php endforeach; ?>
-                    </select><br>
+                    <?php foreach (['hebergement', 'restauration', 'activites', 'transport'] as $type): ?>
+                        <label><?= ucfirst($type) ?> :</label>
+                        <select name="<?= $type ?>[]" class="option-select" data-type="<?= $type ?>">
+                            <?php foreach ($step['options'][$type] as $option): ?>
+                                <option value="<?= htmlspecialchars($option['label']) ?>" data-prix="<?= $option['prix'] ?>">
+                                    <?= htmlspecialchars($option['label']) ?> (+<?= $option['prix'] ?>€)
+                                </option>
+                            <?php endforeach; ?>
+                        </select><br>
+                    <?php endforeach; ?>
 
                     <label>Nombre de participants :</label>
-                    <input type="number" name="participants[]" min="1" value="1"><br><br>
-                    <?php endif; ?>
+                    <input type="number" name="participants[]" class="participants-input" min="1" value="1"><br><br>
 
-
-                            </li>
-                        <?php endforeach; ?>
-                        <?php if ($isConnected): ?>
-                            <div class="recap-button-container">
-                        <button type="submit" class="recap-btn">Réserver</button>
-                        </div>
-                    
-                    
-
-                </form>
-                <?php else: ?>
-                    <p style="color: red;">Veuillez vous connecter pour personnaliser ce voyage.</p>
+                    <p><strong>Prix total pour cette étape :</strong> <span class="prix-etape">0</span>€</p>
                 <?php endif; ?>
-                    </ol>
+            </li>
+        <?php endforeach; ?>
+    </ol>
+    <?php if ($isConnected): ?>
+        <p class="prix-final-global"><strong>Prix total estimé du voyage :</strong> <span id="prix-voyage-final">0</span></p>
+        <div class="recap-button-container">
+            <button type="submit" class="recap-btn">Réserver</button>
 
-        <a href="destination.php" class="btn-retour">← Retour aux voyages</a>
-    </section>
+        </div>
+        <input type="hidden" name="prix_total" id="prix_total_input" value="0">
 
+        </form>
+    <?php else: ?>
+        <p style="color: red;">Veuillez vous connecter pour personnaliser ce voyage.</p>
+    <?php endif; ?>
 
-    <footer>
+    <a href="destination.php" class="btn-retour">← Retour aux voyages</a>
+</section>
+
+<footer>
     <div class="footer-container">
         <div class="footer-section">
             <h2>XPlore</h2>
@@ -193,7 +156,3 @@ if (!$trip) {
 </footer>
 </body>
 </html>
-
-</body>
-</html>
-

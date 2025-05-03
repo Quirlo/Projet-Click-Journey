@@ -70,7 +70,11 @@ $totalTrips = count($targetUser['trips_history']);
 
 <h2>Étapes personnalisées :</h2>
 <ol>
-<?php foreach ($recap['custom_options'] as $step): ?>
+<?php foreach ($recap['custom_options'] as $step): 
+    $isEmpty = empty($step['hebergement']) && empty($step['restauration']) && empty($step['activite']) && empty($step['transport']);
+    if ($isEmpty) continue;
+?>
+
     <table class="recap-table">
         <thead>
         <tr><th colspan="2"><?= htmlspecialchars($step['step'] ?? 'Étape non définie') ?></th></tr>
