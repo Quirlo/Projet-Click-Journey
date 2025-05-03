@@ -1,97 +1,115 @@
-# Projet Click-JourneY - XPLORE
+# 🌍 Projet Click-JourneY - XPLORE
 
-Click-JourneY est un site web dynamique de réservation de voyages d’aventure, développé en PHP et utilisant une base de données au format JSON. Il propose des séjours extrêmes à travers le monde (trek, safari, expéditions) et permet aux utilisateurs de consulter, personnaliser et réserver leurs voyages.
+Click-JourneY est un site web dynamique de réservation de voyages d’aventure, développé en **PHP**, **JavaScript** et utilisant des fichiers **JSON** comme base de données. Il propose des séjours extrêmes à travers le monde (trek, safari, expéditions) et permet aux utilisateurs de consulter, personnaliser et réserver leurs voyages.
+
+---
 
 ## 📁 Arborescence du projet
 
+```
 Projet-Click-JourneY/
-│
-├── css/                    # Feuilles de style CSS
+├── css/
 │   ├── styleindex.css
 │   ├── styleprofil.css
 │   ├── stylepayment.css
 │   ├── stylevoyage.css
-│   └── styledark.css       # (Nouveau) Thème sombre
+│   └── styledark.css            # Thème sombre (nouveau)
 │
-├── data/                   # Fichiers JSON (trips, users)
-│   ├── trips.json
-│   └── users.json
+├── data/
+│   ├── trips.json               # Base de voyages
+│   └── users.json               # Base utilisateurs
 │
-├── image/                  # Images utilisées dans le site
+├── image/                       # Images du site
 │
-├── js/                     # Scripts JavaScript (phase 3)
-│   ├── form_validation.js      # Validation des formulaires
-│   ├── panier.js               # Gestion du panier
-│   ├── personnalisation.js     # Calcul dynamique du prix
-│   ├── profil.js               # Édition du profil en direct
-│   ├── theme.js                # Gestion du thème (clair/sombre)
-│   └── tri.js                  # Filtres & tri dynamiques
+├── js/                          # Scripts JavaScript
+│   ├── form_validation.js
+│   ├── panier.js
+│   ├── personnalisation.js
+│   ├── profil.js
+│   ├── theme.js
+│   └── tri.js
 │
-├── testphp/                # Fichiers de tests PHP
+├── testphp/                     # Fichiers de test PHP
 │
-├── admin.php               # Interface d'administration
-├── ajouter_panier.php      # (Nouveau) Ajout d’un voyage au panier
-├── connexion.php           # Page de connexion
-├── consulter.php           # Détails des voyages réservés
-├── destination.php         # Liste publique des voyages
-├── index.php               # Page d'accueil
-├── inscription.php         # Page d'inscription
-├── logout.php              # Déconnexion utilisateur
-├── panier.php              # (Nouveau) Panier avec voyages personnalisés
-├── payment.php             # Interface de paiement
-├── prepare_payment.php     # (Nouveau) Préparation des paramètres de paiement
-├── profil.php              # Page profil avec champs éditables
-├── recapprofil.php         # Historique des voyages réservés
-├── recapitulatif.php       # Récapitulatif d'un voyage personnalisé
-├── retirer_panier.php      # (Nouveau) Suppression d’un voyage du panier
-├── update_user.php         # Mise à jour du profil
-├── validation_paiement.php # Traitement du retour de paiement
-├── voyage.php              # Détails + personnalisation d’un voyage
+├── admin.php
+├── ajouter_panier.php
+├── connexion.php
+├── consulter.php
+├── destination.php
+├── index.php
+├── inscription.php
+├── logout.php
+├── panier.php
+├── payment.php
+├── prepare_payment.php
+├── profil.php
+├── recapprofil.php
+├── recapitulatif.php
+├── retirer_panier.php
+├── update_user.php
+├── validation_paiement.php
+├── voyage.php
 │
-├── README.md               # (Ce fichier)
-├── README_XPlore.txt       # Informations spécifiques à XPlore
-└── Rapport.pdf             # Rapport de projet à jour
+├── README.md
+├── README_XPlore.txt
+└── Rapport.pdf
+```
+
+---
 
 ## ✅ Fonctionnalités principales
 
-🔎 Consultation libre des voyages (page destination.php)  
-📄 Fiches détaillées avec personnalisation (hébergement, restauration, activités)  
-💬 Authentification utilisateur (inscription, connexion)  
-🧾 Récapitulatif et réservation personnalisée  
-🛍️ **Nouveau** : système de panier avant paiement  
-💳 Simulation de paiement via interface CY Bank  
-🛠️ Interface administrateur (consultation, bannissement, etc.)  
-🎨 **Nouveau** : gestion dynamique du thème clair/sombre (via cookies)  
-🧠 **Nouveau** : validation JS des formulaires, édition de profil inline  
-📊 **Nouveau** : filtres et tri dynamiques des voyages sans rechargement  
+- 🔍 Consultation libre des voyages (page `destination.php`)
+- 📄 Fiches détaillées avec personnalisation (hébergement, restauration, activités)
+- 🧾 Récapitulatif et réservation personnalisée
+- 💬 Authentification complète (inscription, connexion, profil utilisateur)
+- 🛍️ **Nouveau** : système de **panier**
+- 💳 Simulation de paiement avec CY Bank
+- 🧠 **Nouveau** : validation JS des formulaires + édition dynamique de profil
+- 🎨 **Nouveau** : thème clair/sombre stocké en cookie
+- 📊 **Nouveau** : tri & filtres dynamiques sur les voyages (JS)
 
-## 📦 Format des données JSON
+---
+
+## 📦 Données JSON
 
 ### `trips.json`
-Contient les voyages, leurs étapes, prix de base et options personnalisables avec prix unitaires.
+Stocke les voyages avec :
+- id, titre, destination, dates, durée, prix de base, difficulté
+- étapes (avec hébergement, restauration, activités, transport)
+- options personnalisables avec prix unitaires
 
 ### `users.json`
-Contient les utilisateurs (email, mot de passe, rôle, réservations, etc.).
+Contient :
+- email, mot de passe (hashé), rôle (`normal`, `admin`, `banni`)
+- réservations avec date, ID voyage, options choisies, statut
+
+---
 
 ## 👤 Comptes de test
 
-### 🔑 Administrateur  
-Email : `test@admin.com`  
-Mot de passe : `oli`
+| Rôle          | Email               | Mot de passe |
+|---------------|---------------------|--------------|
+| Administrateur| `test@admin.com`    | `oli`        |
+| Client normal | `slave1@test.com`   | `1234`       |
 
-### 👥 Client classique  
-Email : `slave1@test.com`  
-Mot de passe : `1234`
+---
 
-## 🚀 Lancer le projet
+## 🚀 Lancer le projet en local
 
-1. Copier le dossier dans `htdocs/` (serveur local avec XAMPP par ex.)  
-2. Démarrer **Apache**  
-3. Accéder à : [http://localhost/Projet-Click-JourneY](http://localhost/Projet-Click-JourneY)
+1. Copier le dossier dans `htdocs/` (serveur local XAMPP ou équivalent)
+2. Démarrer **Apache**
+3. Ouvrir un navigateur et accéder à :  
+   👉 [http://localhost/Projet-Click-JourneY](http://localhost/Projet-Click-JourneY)
 
-## ✏️ Auteurs
+---
 
-- Mohamed Ouhab  
-- Edonis Shaljani  
-- Taimim Jelouali
+## ✍️ Auteurs
 
+- **Mohamed Ouhab**
+- **Edonis Shaljani**
+- **Taimim Jelouali**
+
+---
+
+> Projet réalisé dans le cadre de la phase 3 (JS dynamique) du cours d'informatique à CY Cergy Paris Université.
