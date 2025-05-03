@@ -1,93 +1,90 @@
-#  Projet Click-JourneY-XPLORE
+# Projet Click-JourneY - XPLORE
 
-**Click-JourneY** est un site web dynamique de réservation de voyages d’aventure, développé en PHP et utilisant une base de données au format JSON. Il propose des séjours extrêmes à travers le monde (trek, safari, expéditions) et permet aux utilisateurs de consulter, personnaliser et réserver leurs voyages.
+Click-JourneY est un site web dynamique de réservation de voyages d’aventure, développé en PHP et utilisant une base de données au format JSON. Il propose des séjours extrêmes à travers le monde (trek, safari, expéditions) et permet aux utilisateurs de consulter, personnaliser et réserver leurs voyages.
 
-##  Arborescence du projet
+## 📁 Arborescence du projet
 
-```
-Projet-Click-Journey/
+Projet-Click-JourneY/
 │
 ├── css/                    # Feuilles de style CSS
+│   ├── styleindex.css
+│   ├── styleprofil.css
+│   ├── stylepayment.css
+│   ├── stylevoyage.css
+│   └── styledark.css       # (Nouveau) Thème sombre
+│
 ├── data/                   # Fichiers JSON (trips, users)
+│   ├── trips.json
+│   ├
+│   └── users.json
+│
 ├── image/                  # Images utilisées dans le site
+│
+├── js/                     # Scripts JavaScript (phase 3)
+│   ├── form_validation.js      # (Nouveau) Validation formulaire
+│   ├── panier.js               # (Nouveau) Gestion du panier
+│   ├── personnalisation.js     # (Nouveau) Personnalisation dynamique
+│   ├── profil.js               # (Nouveau) Modification profil en direct
+│   ├── theme.js                # (Nouveau) Changement de thème
+│   └── tri.js                  # (Nouveau) Filtres + tri dynamique
+│
 ├── testphp/                # Fichiers de tests PHP
 │
 ├── admin.php               # Interface d'administration
+├── ajouter_panier.php      # (Nouveau) Ajout d’un voyage personnalisé au panier
 ├── connexion.php           # Page de connexion
+├── consulter.php           # Consultation des réservations
 ├── destination.php         # Liste des voyages (publique)
-├── inscription.php         # Page d'inscription
 ├── index.php               # Page d'accueil
+├── inscription.php         # Page d'inscription
+├── logout.php              # Déconnexion utilisateur
+├── panier.php              # (Nouveau) Page du panier
 ├── payment.php             # Interface de paiement
+├── prepare_payment.php     # (Nouveau) Préparation paiement
 ├── profil.php              # Accès au profil utilisateur
-├── recapitulatif.php       # Page de récapitulatif d'un voyage personnalisé
 ├── recapprofil.php         # Historique des voyages (profil ou admin)
+├── recapitulatif.php       # Page de récapitulatif d'un voyage personnalisé
+├── retirer_panier.php      # (Nouveau) Suppression d’un voyage du panier
+├── update_user.php         # Mise à jour profil utilisateur
 ├── validation_paiement.php # Vérification après retour de paiement
-├── voyage.php              # Détails d’un voyage cliquable
+├── voyage.php              # Détails d’un voyage cliquable avec personnalisation
 │
 ├── README.md               # (Ce fichier)
-├── README_XPlore.txt       # Informations spécifiques à la plateforme XPlore
-└── Rapport.pdf             # Rapport de projet
-```
+├── README_XPlore.txt       # Informations spécifiques à XPlore
+└── Rapport.pdf             # Rapport de projet (phase 3 à jour)
 
-##  Fonctionnalités principales
+Fonctionnalités principales
 
-- 🔎 **Consultation libre des voyages** (page `destination.php`)
-- 📄 **Fiches détaillées** avec personnalisation (hébergement, restauration, activités)
-- 💬 **Authentification utilisateur** (inscription, connexion)
-- 🧾 **Récapitulatif et réservation personnalisée**
-- 💳 **Simulation de paiement via interface CY Bank**
-- 🛠️ **Interface administrateur** (gestion des utilisateurs, bannissement, consultation des réservations)
-- 🔐 **Sécurisation basique des accès selon rôles**
+ Consultation libre des voyages (page destination.php)  
+ Fiches détaillées avec personnalisation (hébergement, restauration, activités)  
+ Authentification utilisateur (inscription, connexion)  
+ Récapitulatif et réservation personnalisée  
+ Système de panier avant paiement  
+ Simulation de paiement via interface CY Bank  
+ Interface administrateur (gestion des utilisateurs, bannissement, consultation des réservations)  
+ Changement de thème (clair/sombre) via cookie  
+ Validation JS des formulaires, édition de profil sans rechargement  
+ Tri & filtres dynamiques des voyages  
 
-## 📦 Format des données JSON
+ 📦 Format des données JSON
 
-### `trips.json`
-Contient les voyages avec leurs caractéristiques :
+ trips.json : voyages avec personnalisation par étapes  
+ users.json : utilisateurs avec réservations, rôles, dates, identifiants  
 
-```json
-{
-  "id": 1,
-  "title": "Safari dans le Masai Mara",
-  "destination": "Kenya",
-  "price": 1490,
-  "duration": "7 jours",
-  "start_date": "2025-05-15",
-  "steps": [
-    "SITUATION", "HÉBERGEMENT", "RESTAURATION", ...
-  ]
-}
-```
+##  Comptes de test
 
-### `users.json`
-Gère les comptes et rôles des utilisateurs :
+###  Administrateur  
+Email : `test@admin.com`  
+Mot de passe : `oli`
 
-```json
-{
-  "email": "exemple@mail.com",
-  "password": "hash",
-  "role": "normal",  // ou "admin", "banni"
-  "reservations": [...]
-}
-```
+###  Client classique  
+Email : `slave1@test.com`  
+Mot de passe : `1234`
 
-## 👤 Comptes de test
 
-- 🔑 **Administrateur**  
-  Email : `test@admin.com`  
-  Mot de passe : `oli`
+Auteurs
 
-- 👥 **Client classique**  
-  Email : `slave1@test.com`  
-  Mot de passe : `1234`
-
-## 🚀 Lancer le projet
-
-1. Placer le dossier dans `htdocs` (via XAMPP ou autre serveur local).
-2. Démarrer **Apache** dans XAMPP.
-3. Accéder à [http://localhost/Projet-Click-Journey](http://localhost/Projet-Click-Journey)
-
-## ✏️ Auteurs
-
-- Mohamed Ouhab
-- Edonis Shaljani
+- Mohamed Ouhab  
+- Edonis Shaljani  
 - Taimim Jelouali
+
