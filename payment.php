@@ -58,17 +58,22 @@ elseif (isset($_SESSION['recap'])) {
         <h1>💳 Paiement</h1>
         <div class="payment-box">
             <p><strong>Voyage :</strong> <?= htmlspecialchars($titreVoyage) ?></p>
-            <p><strong>Montant à payer :</strong> <?= $montant ?> €</p>
 
 
             <form method="post" action="validation_paiement.php">
                 <div class="form-group">
                     <label>Numéro de carte :</label>
-                    <input type="text" name="card_number" id="card_number" maxlength="19" placeholder="1234 5678 9012 3456" required>
+                   <input type="text" name="card_number" id="card_number" maxlength="19"
+                    placeholder="1234 5678 9012 3456"
+                    pattern="\d{4} \d{4} \d{4} \d{4}"
+                    title="Format attendu : 1234 5678 9012 3456" required>
                 </div>
                 <div class="form-group">
                     <label>Nom du titulaire :</label>
-                    <input type="text" name="card_name" placeholder="Jean Dupont" required>
+                    <input type="text" name="card_name" placeholder="Jean Dupont"
+                    pattern="[A-Za-zÀ-ÿ\s\-']{2,50}"
+                    title="Seules les lettres, espaces et tirets sont autorisés"
+                    required>
                 </div>
                 <div class="form-group">
                     <label>Date d'expiration :</label>
@@ -76,7 +81,8 @@ elseif (isset($_SESSION['recap'])) {
                 </div>
                 <div class="form-group">
                     <label>CVV :</label>
-                    <input type="text" name="card_cvv" placeholder="123" maxlength="3" required>
+                    <input type="text" name="card_cvv" placeholder="123" maxlength="3"
+                    pattern="\d{3}" title="Le CVV doit contenir 3 chiffres" required>
                 </div>
                 <button type="submit" name="valider_paiement" class="btn-valider">✅ Payer maintenant</button>
             </form>

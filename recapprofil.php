@@ -71,7 +71,7 @@ $totalTrips = count($targetUser['trips_history']);
 <h2>Étapes personnalisées :</h2>
 <ol>
 <?php foreach ($recap['custom_options'] as $step): 
-    $isEmpty = empty($step['hebergement']) && empty($step['restauration']) && empty($step['activite']) && empty($step['transport']);
+    $isEmpty = empty($step['hebergement']) && empty($step['restauration']) && empty($step['activites']) && empty($step['transport']);
     if ($isEmpty) continue;
 ?>
 
@@ -82,7 +82,7 @@ $totalTrips = count($targetUser['trips_history']);
         <tbody>
         <tr><td><strong>Hébergement</strong></td><td><?= htmlspecialchars($step['hebergement'] ?? 'Non défini') ?></td></tr>
         <tr><td><strong>Restauration</strong></td><td><?= htmlspecialchars($step['restauration'] ?? 'Non défini') ?></td></tr>
-        <tr><td><strong>Activité</strong></td><td><?= htmlspecialchars($step['activite'] ?? 'Non défini') ?></td></tr>
+        <tr><td><strong>Activité</strong></td><td><?= htmlspecialchars($step['activites'] ?? 'Non défini') ?></td></tr>
         <tr><td><strong>Transport</strong></td><td><?= htmlspecialchars($step['transport'] ?? 'Non défini') ?></td></tr>
         <tr><td><strong>Participants</strong></td><td><?= htmlspecialchars($step['participants'] ?? 'Non défini') ?></td></tr>
         </tbody>
