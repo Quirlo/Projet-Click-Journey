@@ -10,7 +10,11 @@ if (!isset($_SESSION['user'])) {
 
 // Si envoi JSON brut via fetch
 $input = json_decode($_POST['recap_data'], true);
-$input['prix_total'] = $_POST['prix_total'] ?? '0'; // ✅ AJOUT ICI
+
+// ✅ On force uniquement si le champ n'existe pas déjà
+if (!isset($input['prix_total'])) {
+    $input['prix_total'] = $_POST['prix_total'] ?? '0';
+}
 
 
 
