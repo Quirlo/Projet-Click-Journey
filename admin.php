@@ -122,19 +122,20 @@ if (isset($_POST['emailToUnban'])) {
     <tr>
         <td><?= htmlspecialchars($user['personal_info']['name'] ?? 'Non défini') ?></td>
         <td><?= htmlspecialchars($user['email'] ?? 'Non défini') ?></td>
-        <td><?= ucfirst($user['role'] ?? 'inconnu') ?></td>
+        <td class="user-role"><?= ucfirst($user['role'] ?? 'inconnu') ?></td>
+
         <td>
-            <?php if (($user['role'] ?? '') === 'normal'): ?>
-                <form method="post" style="display:inline;">
-                <input type="hidden" name="emailToBan" value="<?= htmlspecialchars($user['email']) ?>">
-                <button type="submit" class="ban-btn">Bannir</button>
-                </form>
-            <?php elseif (($user['role'] ?? '') === 'banni'): ?>
-                <form method="post" style="display:inline;">
-                <input type="hidden" name="emailToUnban" value="<?= htmlspecialchars($user['email']) ?>">
-                <button type="submit" class="unban-btn">Débannir</button>
-                </form>
-            <?php endif; ?>
+                        <?php
+                $currentRole = $user['role'] ?? 'inconnu';
+                $isBanned = $currentRole === 'banni';
+                $nextRole = $isBanned ? 'normal' : 'banni';
+                $buttonText = $isBanned ? 'Débannir' : 'Bannir';
+                $buttonClass = $isBanned ? 'unban-btn' : 'ban-btn';
+            ?>
+            <button class="<?= $buttonClass ?>"
+                    onclick="updateRole(this, '<?= $user['email'] ?>', '<?= $nextRole ?>')">
+                <?= $buttonText ?>
+            </button>
             <form method="get" action="consulter.php" style="display:inline;">
             <input type="hidden" name="email" value="<?= htmlspecialchars($user['email']) ?>">
             <button type="submit" class="edit-btn">Consulter</button>
@@ -207,6 +208,9 @@ if (isset($_POST['emailToUnban'])) {
             <p>&copy; 2025 XPlore - Tous droits réservés</p>
         </div>
     </footer>
+
+<script src="js/admin.js"></script>
+
     
 </body>
 
