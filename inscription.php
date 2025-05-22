@@ -1,6 +1,9 @@
 <?php
 session_start();
-
+if (isset($_SESSION['user'])) {
+    header("Location: index.php"); // Redirige vers la page d'accueil ou une autre page appropriée
+    exit();
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (!empty($_POST['nom']) && !empty($_POST['email']) && !empty($_POST['password'])) {

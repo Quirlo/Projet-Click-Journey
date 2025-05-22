@@ -1,6 +1,9 @@
 <?php
 session_start();
-
+if (isset($_SESSION['user'])) {
+    header("Location: index.php"); // Redirige vers la page d'accueil ou une autre page appropriée
+    exit();
+}
 // Affichage des erreurs
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
